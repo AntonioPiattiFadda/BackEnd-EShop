@@ -8,6 +8,8 @@ const {
   updateCustomerSchema,
 } = require('../schemas/customer.schema');
 
+//NOTE - Queda inactivo porque esta relacionado con users y ahora users es para los dueños de los negocios.
+
 const router = express.Router();
 const service = new CustomerService();
 

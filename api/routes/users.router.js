@@ -27,7 +27,7 @@ router.get('/:id',
       next(error);
     }
   }
-);
+);  
 
 router.post('/',
   validatorHandler(createUserSchema, 'body'),

@@ -7,40 +7,52 @@ const UserSchema = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
   },
   email: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true,
   },
+  imgLogo: {
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
   password: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   recoveryToken: {
     field: 'recovery_token',
     allowNull: true,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   role: {
     allowNull: false,
     type: DataTypes.STRING,
-    defaultValue: 'customer'
+    defaultValue: 'customer',
+  },
+  pricePerHundredMeters: {
+    allowNull: true,
+    type: DataTypes.INTEGER,
   },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'create_at',
-    defaultValue: Sequelize.NOW
-  }
-}
+    defaultValue: Sequelize.NOW,
+  },
+};
 
 class User extends Model {
   static associate(models) {
     this.hasOne(models.Customer, {
       as: 'customer',
-      foreignKey: 'userId'
+      foreignKey: 'userId',
+    });
+    this.hasMany(models.Schedule, {
+      as: 'schedules',
+      foreignKey: 'userId',
     });
   }
 
@@ -49,10 +61,9 @@ class User extends Model {
       sequelize,
       tableName: USER_TABLE,
       modelName: 'User',
-      timestamps: false
-    }
+      timestamps: false,
+    };
   }
 }
 
-
-module.exports = { USER_TABLE, UserSchema, User }
+module.exports = { USER_TABLE, UserSchema, User };

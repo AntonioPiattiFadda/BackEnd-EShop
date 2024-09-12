@@ -8,6 +8,7 @@ const customersRouter = require('./customers.router');
 const authRouter = require('./auth.router');
 const profileRouter = require('./profile.router');
 const unitPriceRouter = require('./unit-price.router');
+const scheduleRouter = require('./schedule.router');
 
 function routerApi(app) {
   const router = express.Router();
@@ -20,6 +21,7 @@ function routerApi(app) {
   router.use('/auth', authRouter);
   router.use('/profile', profileRouter);
   router.use('/unit-price', unitPriceRouter);
+  router.use('/schedule', scheduleRouter);
 }
 
 module.exports = routerApi;
